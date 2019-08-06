@@ -9,4 +9,22 @@ services:
     ports:
       - 4200:4200
     command: >
-      bash -c "ng new myApp --directory ./ && ng serve --host 0.0.0.0"
+      bash -c "npm install && ng serve --host 0.0.0.0"
+  angular_karma:
+    image: trion/ng-cli-karma:latest
+    container_name: "angular_karma"
+    volumes:
+      - .:/usr/app/
+    working_dir: /usr/app/
+    ports:
+      - 9876:9876
+    command: >
+      bash -c "ng test"
+  angular_e2e:
+    image: trion/ng-cli-e2e:latest
+    container_name: "angular_e2e"
+    volumes:
+      - .:/usr/app/
+    working_dir: /usr/app/
+    command: >
+      bash -c "ng e2e"
