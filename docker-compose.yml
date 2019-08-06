@@ -1,0 +1,12 @@
+version: "3"
+services:
+  angular_cli:
+    image: trion/ng-cli:latest
+    container_name: "angular_cli"
+    volumes:
+      - .:/usr/app/
+    working_dir: /usr/app/
+    ports:
+      - 4200:4200
+    command: >
+      bash -c "ng new myApp --directory ./ && ng serve --host 0.0.0.0"
